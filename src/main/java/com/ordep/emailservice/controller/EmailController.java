@@ -4,10 +4,7 @@ import com.ordep.emailservice.dto.ContactRequest;
 import com.ordep.emailservice.service.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/contact")
@@ -21,8 +18,12 @@ public class EmailController {
 
     @PostMapping
     public ResponseEntity<String> sendEmailContactRequest(@RequestBody @Valid ContactRequest contactRequest) {
-        String response = emailService.sendContactRequest(contactRequest);
-        return ResponseEntity.ok(response);
+        try {
+            String response = emailService.sendContactRequest(contactRequest);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("An error occurred while trying to send a contact request"+e.getMessage());
+        }
     }
 
 }
