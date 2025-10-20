@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ordep</groupId>
     <artifactId>email-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>email-service</name>
     <description>email-service</description>
     <url/>
